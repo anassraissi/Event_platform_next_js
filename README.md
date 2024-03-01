@@ -22,4 +22,23 @@ UploadThing is the easiest way to add file uploads to your full stack TypeScript
 Clerk is a complete suite of embeddable UIs, flexible APIs, and admin dashboards to authenticate and manage your users.
 
 ```
+# Webhooks
+```
+Clerk webhooks allow you to receive event notifications from Clerk. Clerk will send a POST request to a URL you specify when certain events happen in your Clerk account.
+
+Clerk uses Svix(opens in a new tab) to send our webhooks.
+
+You can find the Webhook signing secret when you click on the endpoint you created on the Webhooks(opens in a new tab) page in the Clerk Dashboard.
+
+Clerk provides authentication and user management features for web applications. The webhook might be used to receive notifications or data updates from Clerk related to user authentication events or other relevant actions.
+
+For example, the webhook might be configured to receive notifications when a user signs up, logs in, or updates their profile. This allows the application to react to these events and perform any necessary actions, such as updating user information in the database or triggering additional workflows.
+
+
+
+```
+# Install the svix package
+```
+To get started setting up your endpoint, you will need to install the svix package(opens in a new tab). Svix provides a package for verifying the webhook signature, making it easy to verify the authenticity of the webhook events.
+```
 
