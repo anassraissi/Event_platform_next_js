@@ -42,3 +42,10 @@ For example, the webhook might be configured to receive notifications when a use
 To get started setting up your endpoint, you will need to install the svix package(opens in a new tab). Svix provides a package for verifying the webhook signature, making it easy to verify the authenticity of the webhook events.
 ```
 
+# payload
+
+```
+In web development, the term "payload" refers to the data that is transmitted between a client and a server in a request or response.
+For example, in the context of an HTTP request, the payload typically refers to the data being sent from the client to the server in the request body. This data could be in various formats such as JSON, XML, or form data, and it contains the information needed for the server to process the request.
+```
+
