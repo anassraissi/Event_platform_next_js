@@ -48,4 +48,22 @@ To get started setting up your endpoint, you will need to install the svix packa
 In web development, the term "payload" refers to the data that is transmitted between a client and a server in a request or response.
 For example, in the context of an HTTP request, the payload typically refers to the data being sent from the client to the server in the request body. This data could be in various formats such as JSON, XML, or form data, and it contains the information needed for the server to process the request.
 ```
+# webhook plan
+```
 
+A webhook endpoint is a URL provided by a web application or service where webhook payloads are sent.
+
+Here's how it works:
+
+1 -> Webhook Registration: The user or developer registers a webhook endpoint URL with the web application or service. This is typically done through the application's settings or developer portal.
+
+2-> Event Trigger: When a specific event occurs within the application or service, such as a new user sign-up or a data update, the application generates a webhook payload containing information about the event.
+
+3-> Payload Delivery: The application sends the webhook payload to the registered webhook endpoint URL via an HTTP POST request. The payload usually contains JSON or XML data representing the event that occurred.
+
+4-> Endpoint Processing: The webhook endpoint receives the payload and processes it accordingly. This may involve updating data, triggering actions, or performing other tasks based on the event information.
+
+5-> Response Handling: The webhook endpoint typically responds with an acknowledgment or confirmation status code, indicating whether the payload was successfully received and processed.
+
+Webhook endpoints are commonly used for real-time integration and automation scenarios, allowing different systems to communicate and synchronize data in response to events or actions. They provide a flexible and efficient way to build interconnected applications and services.
+```
