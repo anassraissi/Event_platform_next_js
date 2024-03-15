@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
@@ -10,7 +10,8 @@ import { EventFormSchema } from '@/lib/validator'
 import { z } from "zod"
 import { eventDefaultValues } from '@/app/constants'
 import Dropdown from './Dropdown'
- 
+import { Textarea } from "@/components/ui/textarea"
+import { FileUploader } from './FileUppload' 
 
 
 type EventFormProps={
@@ -18,6 +19,11 @@ type EventFormProps={
     type:'create | update'
 }
 const EventForm = ({userId,type}:EventFormProps) => {
+  const [files, setFiles] = useState<File[]>([]);  
+  {/*
+    const [files, setFiles] = useState<File[]>([])
+  => creates a state variable named files to store an array of File objects (representing uploaded files).
+*/}
   const initialValues=eventDefaultValues;
   const form = useForm<z.infer<typeof EventFormSchema>>({
     resolver: zodResolver(EventFormSchema),
@@ -56,7 +62,46 @@ const EventForm = ({userId,type}:EventFormProps) => {
               </FormItem>
             )}
           />
+            <FormField
+            control={form.control}
+            name="categoryId"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Dropdown onChangeHandler={field.onChange} value={field.value} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
         </div>
+        <div className="flex flex-col gap-5 md:flex-row">
+          <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl className="h-72">
+                    <Textarea placeholder="Description" {...field} className="textarea rounded-2xl" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          <FormField
+              control={form.control}
+              name="imageUrl"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl className="h-72">
+                    <FileUploader  onFieldChange={field.onChange} imageUrl={field.value} setFiles={setFiles} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+          </div>
       </form>
     </Form>
     

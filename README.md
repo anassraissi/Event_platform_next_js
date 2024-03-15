@@ -67,3 +67,9 @@ Here's how it works:
 
 Webhook endpoints are commonly used for real-time integration and automation scenarios, allowing different systems to communicate and synchronize data in response to events or actions. They provide a flexible and efficient way to build interconnected applications and services.
 ```
+# Dropzone
+```
+A dropzone is a user interface element commonly used in web applications to allow users to upload files by dragging and dropping them onto a designated area of the webpage. The dropzone typically provides visual feedback to indicate that files can be dropped onto it, such as changing the appearance of the area or displaying a message.
+
+In the context of the provided code, the dropzone is implemented using the useDropzone hook from the @uploadthing/react/hooks module. This hook provides functionality to create a dropzone area in the UI and handle file uploads. It allows you to specify callback functions to be executed when files are dropped onto the dropzone, as well as configuration options such as accepted file types and maximum file size.
+```
