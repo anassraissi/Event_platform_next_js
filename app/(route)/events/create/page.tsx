@@ -6,7 +6,7 @@ const page = () => {
 //const {sessionClaims}=auth();: Calls the auth function imported from @clerk/nextjs to get information about the current user's session. 
 //It destructures the sessionClaims object from the result.
 
-    const userId=sessionClaims?.userId as String;  // conserdret as string
+    const userId=sessionClaims?.userId as string;  // conserdret as string
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
