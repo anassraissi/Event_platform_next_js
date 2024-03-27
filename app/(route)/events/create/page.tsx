@@ -15,7 +15,7 @@ const page = () => {
         <div className="wrapper my-8">
             <EventForm userId={userId} type="create" />
         </div>
-    </>s
+    </>
   )
 }
 
