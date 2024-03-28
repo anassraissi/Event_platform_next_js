@@ -22,7 +22,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 type EventFormProps = {
   userId: string,
-  type: 'create | update'
+  type: "create" | "update"
 }
 const EventForm = ({ userId, type }: EventFormProps) => {
   const [files, setFiles] = useState<File[]>([]);
@@ -266,8 +266,6 @@ const EventForm = ({ userId, type }: EventFormProps) => {
           {form.formState.isSubmitting ? (
             'Submitting...'
           ): `${type} Event `}</Button>
-
-
       </form>
     </Form>
 
