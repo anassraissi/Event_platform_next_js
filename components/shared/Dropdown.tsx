@@ -3,7 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, } from "
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
 import { ICategory } from '@/lib/database/models/category.model'
 import { Input } from '../ui/input'
-import { CreateCategory, getAllCategories } from '@/lib/actions/category.action'
+import { createCategory, getAllCategories } from '@/lib/actions/category.action'
 type DropdownProps = {
     value?: string,    //The question mark (?) means the value is optional, so a dropdown can exist without an initial value.
     onChangeHandler?: () => void
@@ -16,7 +16,7 @@ const Dropdown = ({ onChangeHandler, value }: DropdownProps) => {
         
     ])
     const handelAddCategory = () => {
-        CreateCategory({
+        createCategory({
             categoryName:newCategory.trim()
         }).then((category)=>{
             setCategory((prevCatgs)=>[...prevCatgs,category]);
