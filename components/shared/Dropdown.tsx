@@ -13,23 +13,22 @@ const Dropdown = ({ onChangeHandler, value }: DropdownProps) => {
 
     const [newCategory, setNewCategory] = useState("");
     const [category, setCategory] = useState<ICategory[]>([
-        
+
     ])
     const handelAddCategory = () => {
         createCategory({
-            categoryName:newCategory.trim()
-        }).then((category)=>{
-            setCategory((prevCatgs)=>[...prevCatgs,category]);
+            categoryName: newCategory.trim()
+        }).then((category) => {
+            setCategory((prevCatgs) => [...prevCatgs, category]);
         })
     }
-    useEffect(()=>{
-        const getCategories = async()=> {
-            const categoryList= await getAllCategories();
-                categoryList  && setCategory(categoryList as ICategory[]);
+    useEffect(() => {
+        const getCategories = async () => {
+            const categoryList = await getAllCategories();
+            categoryList && setCategory(categoryList as ICategory[]);
         }
         getCategories();
-    },[])
-
+    }, [])
     return (
         <Select onValueChange={onChangeHandler} defaultValue={value}>
             <SelectTrigger className="select-field">

@@ -17,7 +17,9 @@ import Image from 'next/image'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Checkbox } from "@/components/ui/checkbox"
-
+import { createEvent } from '@/lib/actions/event.action'
+import { useRouter } from 'next/navigation'
+import { useUploadThing } from '@/lib/uploadthing'
 
 
 type EventFormProps = {
@@ -25,22 +27,53 @@ type EventFormProps = {
   type: "create" | "update"
 }
 const EventForm = ({ userId, type }: EventFormProps) => {
+  const { startUpload } = useUploadThing('imageUploader')
+  const router=useRouter();
   const [files, setFiles] = useState<File[]>([]);
   {/*
-    const [files, setFiles] = useState<File[]>([])
+  const [files, setFiles] = useState<File[]>([])
   => creates a state variable named files to store an array of File objects (representing uploaded files).
 */}
-  const initialValues = eventDefaultValues;
-  const form = useForm<z.infer<typeof EventFormSchema>>({
+const initialValues = eventDefaultValues;
+const form = useForm<z.infer<typeof EventFormSchema>>({
     resolver: zodResolver(EventFormSchema),
     defaultValues: initialValues
   })
-  function onSubmit(values: z.infer<typeof EventFormSchema>) {  
-     //z.infer<typeof EventFormSchema>: This is the type of the values argument.
+  async function onSubmit(values: z.infer<typeof EventFormSchema>){  
+    //z.infer<typeof EventFormSchema>: This is the type of the values argument.
      //It uses Zod (likely a library for validation) to infer the type based on a schema named EventFormSchema.
+     let uploadedImageUrl = values.imageUrl;
+     console.log(files);
+     
 
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+     if(files.length > 0) {
+      console.log('heho');
+      
+       const uploadedImages = await startUpload(files)
+       console.log(uploadedImages);
+ 
+       if(!uploadedImages) {
+         return
+       }
+       uploadedImageUrl = uploadedImages[0].url
+     }
+ 
+     if(type === "create") {
+       try {
+         const newEvent = await createEvent({
+           event: { ...values, imageUrl: uploadedImageUrl },
+           userId,
+           path: '/profile'
+         })
+ 
+         if(newEvent) {
+           form.reset();
+           router.push(`/events/${newEvent._id}`)
+         }
+       } catch (error) {
+         console.log(error);
+       }
+     }
     console.log(values)
   }
   return (

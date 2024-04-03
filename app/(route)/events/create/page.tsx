@@ -1,5 +1,6 @@
 import EventForm from '@/components/shared/EventForm'
 import { auth } from '@clerk/nextjs'
+import { redirect, useRouter } from 'next/navigation';
 import React from 'react'
 const page = () => {
     const {sessionClaims}=auth();   
@@ -7,6 +8,11 @@ const page = () => {
 //It destructures the sessionClaims object from the result.
 
     const userId=sessionClaims?.userId as string;  // conserdret as string
+    console.log(userId);
+    
+    if (typeof userId === 'undefined') {
+      redirect('/');
+    }
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
